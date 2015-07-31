@@ -1,0 +1,12 @@
+default: &default
+  pidfile: 'tmp/pids/sidekiq.pid'
+  logfile: 'log/sidekiq.log'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

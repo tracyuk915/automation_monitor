@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #f0ffff!important;
+}
+
+.progress{
+    height: 80px!important;
+    border-radius: 0%!important;
+}
+.progress-bar{
+    line-height: 80px!important;
+}
+
+.container{
+    width: 98%!important;
+}
+
+.panel{
+    background-color: #f0ffff!important;
+}
+
+.panel-heading{
+    font-size: 20pt;
+    height: 100px;
+    line-height: 80px;
+}
+
+/* Base styles (regardless of theme) */
+.bs-callout {
+    margin: 20px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+    margin-top: 0;
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+    background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-danger {
+    background-color: #fcf2f2;
+    border-color: #dFb5b4;
+}
+.bs-callout-warning {
+    background-color: #fefbed;
+    border-color: #f1e7bc;
+}
+.bs-callout-info {
+    background-color: #f0f7fd;
+    border-color: #1b809e;
+}
+
+.ABORTED{
+    background-color: grey!important;
+}
+
+.SUCCESS{
+    background-color: green!important;
+}
+
+.FAILURE{
+    background-color: red!important;
+}

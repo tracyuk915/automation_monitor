@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="page-header">
+    <span style="font-size: 50pt;">
+      Automation Sets
+      <small> <%= @automation_sets.count %> in total</small>
+
+    </span>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= link_to "Create A New Set", new_automation_set_path , :class=>"btn btn-default"%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% @automation_sets.each do |automation_set| %>
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= automation_set.name %> &nbsp;
+              <%= link_to "View", automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm"%>
+              <%= link_to "Update", edit_automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm"%>
+            </div>
+            <div class="panel-body">
+              <div class="bs-callout bs-callout-info" id="callout-glyphicons-location">
+                <p>Jobs</p>
+                <% automation_set.automation_jobs.each do |automation_job| %>
+                  <h3><%= automation_job.name %></h3>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+
