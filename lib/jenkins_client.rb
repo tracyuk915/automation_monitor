@@ -32,7 +32,7 @@ class JenkinsClient
       full_name: hash["fullDisplayName"],
       number: hash["number"],
       start_time: Time.at(hash["timestamp"]/1000).utc,
-      elapsed_time: Time.now - Time.at(hash["timestamp"]/1000),
+      elapsed_time: Time.now.utc - Time.at(hash["timestamp"]/1000).utc,
       duration: hash["duration"]/1000,
       building: hash["building"]
     }

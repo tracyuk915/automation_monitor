@@ -13,8 +13,8 @@
                 <%= job.name %>
                 </div>
                 <div class="panel-body">
-                    <a href="#" title="<%= last_build.full_name %>"><span style="font-size: 20pt;">#<%= last_build.number%> </span></a><br/><br/>
-                    <% if job.automation_builds.first.building == true %>
+                    <a href="<%=last_build.url%>" target="_BLANK" title="<%= last_build.full_name %>"><span style="font-size: 20pt;">#<%= last_build.number%> </span></a><br/><br/>
+                    <% if last_build.building == true %>
                     <div class="progress" style="width:100%;border:2px solid green;">
                       <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width: <%= last_build.progress%>%;">
                         <span style="font-size: 40pt;height: 100%;padding-top: 20px;"><%= last_build.progress %>%</span>
@@ -32,9 +32,9 @@
                         <p>Elapsed Time</p>
                         <h1><%= Time.at(last_build.elapsed_time).utc.strftime("%H:%M:%S") %></h1>
                         <p>Started At</p>
-                        <h1><%= last_build.start_time.strftime("%Y %m %d %H:%M:%S") %></h1>
+                        <h1><%= last_build.start_time.in_time_zone("Beijing").strftime("%Y %m %d %H:%M:%S %z") %></h1>
                         <p>ETA(Estimated Time of Arrival)</p>
-                        <h1><%= last_build.start_time.strftime("%Y %m %d %H:%M:%S") %></h1>
+                        <h1><%= last_build.start_time.in_time_zone("Beijing").strftime("%Y %m %d %H:%M:%S %z") %></h1>
                     </div>
                     <% else %>
                     <div class="progress" style="width:100%;border:2px solid green;">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="bs-callout bs-callout-info" id="callout-glyphicons-location">
                         <p>Started At</p>
-                        <h1><%= last_build.start_time.strftime("%y %m %d %H:%M:%S") %></h1>
+                        <h1><%= last_build.start_time.in_time_zone("Beijing").strftime("%Y %m %d %H:%M:%S %z") %></h1>
                         <p>Duration</p>
                         <h1><%= Time.at(last_build.duration).utc.strftime("%H:%M:%S") %></h1>
                     </div>

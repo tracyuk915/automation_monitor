@@ -10,4 +10,9 @@ class AutomationBuild < ActiveRecord::Base
     return 0 if success_cases_count == 0
     ((success_cases_count.to_f / (success_cases_count + failed_cases_count).to_f).round(2) * 100).to_int
   end
+
+  def url
+    yaml = YAML.load(File.read(Rails.root.join('config','jenkins.yml')))[Rails.env]
+    "#{yaml['server_url']}/job/#{automation_job.name}/#{number}"
+  end
 end

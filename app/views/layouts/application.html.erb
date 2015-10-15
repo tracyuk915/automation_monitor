@@ -4,12 +4,17 @@
   <title>AutomationMonitor</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-
+  <meta http-equiv="refresh" content="30">
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted"><b>Current Time: </b><%=Time.now.in_time_zone("Beijing").strftime("%Y %m %d %H:%M:%S %z") %></p>
+  </div>
+</footer>
 </body>
 </html>

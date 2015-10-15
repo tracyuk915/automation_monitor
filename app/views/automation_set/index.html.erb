@@ -2,8 +2,7 @@
   <div class="page-header">
     <span style="font-size: 50pt;">
       Automation Sets
-      <small> <%= @automation_sets.count %> in total</small>
-
+      <small> <%= @automation_sets.count %> job(s) in total</small>
     </span>
   </div>
   <div class="row">
@@ -28,7 +27,7 @@
               <div class="bs-callout bs-callout-info" id="callout-glyphicons-location">
                 <p>Jobs</p>
                 <% automation_set.automation_jobs.each do |automation_job| %>
-                  <h3><%= automation_job.name %></h3>
+                  <h3><a href="<%=automation_job.url%>" target="_BLANK"><%= automation_job.name %></a></h3>
                 <% end %>
               </div>
             </div>
