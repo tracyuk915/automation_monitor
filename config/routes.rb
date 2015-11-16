@@ -3,7 +3,7 @@ AutomationMonitor::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #   match 'products/:id' => 'catalog#views'
   # Keep in mind you can assign values other than :controller and :action
 
   #root :to => 'automation_sets/index'

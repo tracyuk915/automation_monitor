@@ -12,4 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
+//= require underscore-min
+//= require backbone-min
+//= require models/automation_set
+//= require collections/automation_sets
+//= require views/automation_set
+//= require views/app
+//= require routers/router
+//= require app
 //= require_tree .

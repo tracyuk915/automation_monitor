@@ -5,14 +5,6 @@ class AutomationSetController < ApplicationController
   end
 
   def index
-    @automation_sets = AutomationSet.all
-  end
-
-  def new
-
-  end
-
-  def edit
 
   end
 end

@@ -1,40 +1,35 @@
-<div class="container">
-  <div class="page-header">
-    <span style="font-size: 50pt;">
-      Automation Sets
-      <small> <%= @automation_sets.count %> job(s) in total</small>
-    </span>
+<script type="text/template" id="item-template">
+  <div class="view">
+    <a href="<%= job_url %>"><%= job_name %></a>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <%= link_to "Create A New Set", new_automation_set_path , :class=>"btn btn-default"%>
-        </div>
+  <input class="edit" value="<%= title %>">
+</script>
+<script type="text/template" id="item-edit-template">
+  <div class="view">
+    <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+    <label><%= title %></label>
+    <button class="destroy"></button>
+  </div>
+  <input class="edit" value="<%= title %>">
+</script>
+<script type="text/template" id="item-template">
+  <div class="col-md-4 single_set">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <a class="show_link" href="#">show</a>
+        <a class="update_link" href="#">update</a>
+      </div>
+      <div class="panel-body">
+        <div class="bs-callout bs-callout-info set_jobs"></div>
       </div>
     </div>
   </div>
+</script>
+<div class="container" id="app">
   <div class="row">
-    <% @automation_sets.each do |automation_set| %>
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <%= automation_set.name %> &nbsp;
-              <%= link_to "View", automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm"%>
-              <%= link_to "Update", edit_automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm"%>
-            </div>
-            <div class="panel-body">
-              <div class="bs-callout bs-callout-info" id="callout-glyphicons-location">
-                <p>Jobs</p>
-                <% automation_set.automation_jobs.each do |automation_job| %>
-                  <h3><a href="<%=automation_job.url%>" target="_BLANK"><%= automation_job.name %></a></h3>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-    <% end %>
   </div>
+  <input id="toggle-all" type="checkbox">
+  <label for="toggle-all">Select All</label>
 </div>
 
 
