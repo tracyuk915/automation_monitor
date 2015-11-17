@@ -4,6 +4,9 @@ require 'date'
 class JenkinsClient
 
   def initialize
+
+    Rails.env ||= :development
+
     yml = YAML.load(ERB.new(File.read('config/jenkins.yml')).result)[Rails.env]
     @client = JenkinsApi::Client.new(:server_url => yml['server_url'],
                                      :username => yml['username'], :password => yml['password'],
@@ -40,23 +43,19 @@ class JenkinsClient
     details[:result] = hash["building"] ? "RUNNING" : hash["result"]
 
     gr_count = cases_gr_count(job_name, build_number)
-    details[:success_cases_count] = gr_count[0] - gr_count[1]
-    details[:failed_cases_count] = gr_count[1]
+    details[:success_cases_count] = gr_count[2].to_i
+    details[:failed_cases_count] = gr_count[1].to_i
 
     details
   end
 
-  def cases_gr_count(job_name, build_number, start = 10000)
-    return [0, 0] if start < 0
+  def cases_gr_count(job_name, build_number)
 
-    output = @client.job.get_console_output(job_name, build_number, start)['output']
+    output = @client.job.get_console_output(job_name, build_number)['output']
 
-    match = /(\d+) examples, (\d+) failures/.match(output)
-    if match.nil?
-      cases_gr_count(job_name, build_number, start - 1000)
-    else
-      match[1,2].map {|x| x.to_i}
-    end
+    scan = output.scan(/\[ TOTAL -(\d+)- FAILED -(\d+)- PASSED -(\d+)- \]/)[-1]
+
+    return scan.nil? ? [0,0,0] : scan
   end
 
   private
@@ -69,4 +68,3 @@ class JenkinsClient
     "*****RUNTIME STATUS******:  5/2"
   end
 end
-

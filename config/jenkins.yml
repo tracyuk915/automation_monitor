@@ -2,6 +2,8 @@ development: &development
   server_url: https://build.vitrue.com
   username: smurfs
   password: P4ssw0rd
+  proxy_ip: cn-proxy.jp.oracle.com
+  proxy_port: 80
 
 test:
   <<: *development
