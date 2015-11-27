@@ -23,7 +23,7 @@ end
 gem 'jquery-rails'
 gem 'jenkins_api_client'
 gem 'sidekiq'
-
+gem 'debugger'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

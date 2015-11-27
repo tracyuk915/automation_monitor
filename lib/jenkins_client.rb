@@ -43,8 +43,8 @@ class JenkinsClient
     details[:result] = hash["building"] ? "RUNNING" : hash["result"]
 
     gr_count = cases_gr_count(job_name, build_number)
-    details[:success_cases_count] = gr_count[2].to_i
-    details[:failed_cases_count] = gr_count[1].to_i
+    details[:success_cases_count] = gr_count[1].to_i
+    details[:failed_cases_count] = gr_count[2].to_i
 
     details
   end
@@ -53,9 +53,19 @@ class JenkinsClient
 
     output = @client.job.get_console_output(job_name, build_number)['output']
 
-    scan = output.scan(/\[ TOTAL -(\d+)- FAILED -(\d+)- PASSED -(\d+)- \]/)[-1]
+    scan = output.scan(/\[ TOTAL -(\d+)- PASSED -(\d+)- FAILED -(\d+)- \]/)[-1]
 
     return scan.nil? ? [0,0,0] : scan
+  end
+
+
+  def kick_build(job_name)
+    build_number_tmp = 0;
+    opts = {'build_start_timeout' => 30,
+            'cancel_on_build_start_timeout' => true,
+            'completion_proc' => lambda {|build_number,cancelled| build_number_tmp = build_number; puts "completion_proc--- build_number: #{build_number}"}}
+    @client.job.build(job_name,{}, opts)
+
   end
 
   private

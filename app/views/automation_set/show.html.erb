@@ -11,13 +11,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                 <%= job.name %>
+                <%= link_to "Kickoff", new_automation_job_path(job.name), :class=>"btn btn-default btn-sm", remote: true %>
+              <div id="task-form" style="display:none;"></div>
+                <div id="job-form" style="display:none;"></div>
                 </div>
                 <div class="panel-body">
                     <a href="<%=last_build.url%>" target="_BLANK" title="<%= last_build.full_name %>"><span style="font-size: 20pt;">#<%= last_build.number%> </span></a><br/><br/>
                     <% if last_build.building == true %>
                     <div class="progress" style="width:100%;border:2px solid green;">
                       <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width: <%= last_build.progress%>%;">
-                        <span style="font-size: 40pt;height: 100%;padding-top: 20px;"><%= last_build.progress %>%</span>
+                        <span style="font-size: 40pt;height: 100%;padding-top: 20px;"><%= last_build.progress%>%</span>
                       </div>
                     </div>
                     <div class="progress" style="width:100%;border:2px solid green;">

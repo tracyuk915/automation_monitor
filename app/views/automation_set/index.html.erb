@@ -22,6 +22,8 @@
               <%= automation_set.name %> &nbsp;
               <%= link_to "View", automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm"%>
               <%= link_to "Update", edit_automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm"%>
+              <%= link_to "Kickoff", new_automation_set_path(automation_set.id), :class=>"btn btn-default btn-sm", remote: true %>
+              <div id="task-form" style="display:none;"></div>
             </div>
             <div class="panel-body">
               <div class="bs-callout bs-callout-info" id="callout-glyphicons-location">

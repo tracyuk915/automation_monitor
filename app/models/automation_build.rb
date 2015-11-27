@@ -3,7 +3,7 @@ class AutomationBuild < ActiveRecord::Base
   belongs_to :automation_job
 
   def progress
-    building == true ?  ((elapsed_time.to_f / automation_job.avg_build_duration.to_f).round(2) * 100).to_int : 100
+    building == true ? ((elapsed_time.to_f / automation_job.avg_build_duration.to_f).round(2) * 100).to_int : 100
   end
 
   def green_percent
